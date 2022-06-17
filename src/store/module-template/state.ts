@@ -2,7 +2,7 @@ export interface ExampleStateInterface {
     prop: boolean
 }
 
-function state(): ExampleStateInterface {
+const state = (): ExampleStateInterface => {
     return {
         prop: true,
     }
