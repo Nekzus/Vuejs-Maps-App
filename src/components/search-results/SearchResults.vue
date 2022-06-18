@@ -1,38 +1,37 @@
 <script lang="ts" src="./SearchResults.ts" />
 <template>
-    <ul class="list-group mt-3">
-        <li class="list-group-item list-group-item-action">
-            <h5>Nombre del lugar</h5>
+    <div
+        v-if="isLoadingPlaces"
+        class="alert alert-primary text-center"
+    >
+        <h5>Cargando</h5>
+        <span>Espere por favor...</span>
+    </div>
+    <ul
+        v-else-if="places.length > 0"
+        class="list-group mt-3"
+    >
+        <li
+            v-for="place in places"
+            class="list-group-item list-group-item-action"
+            :class="{ active: place.id === activePlace }"
+            :key="place.id"
+            @click="onPlaceClicked(place)"
+        >
+            <h5>{{ place.text }}</h5>
             <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Nostrum, suscipit beatae! Cupiditate vitae commodi laboriosam.
+                {{ place.place_name }}
             </p>
             <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
-                    Direcciones
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action">
-            <h5>Nombre del lugar</h5>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Nostrum, suscipit beatae! Cupiditate vitae commodi laboriosam.
-            </p>
-            <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
-                    Direcciones
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action">
-            <h5>Nombre del lugar</h5>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Nostrum, suscipit beatae! Cupiditate vitae commodi laboriosam.
-            </p>
-            <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
+                <button
+                    class="btn btn-outline-primary btn-sm"
+                    :class="
+                        place.id === activePlace
+                            ? 'btn-outline-light'
+                            : 'btn-outline-primary'
+                    "
+                    @click.self="getRouteDirections(place)"
+                >
                     Direcciones
                 </button>
             </div>

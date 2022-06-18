@@ -25,7 +25,7 @@ export default defineComponent({
                 offset: [0, -45],
             }).setLngLat(userLocation.value).setHTML(`
                 <h4>Aquí estoy</h4>
-                <p>Actualmente en Puerto Madryn</p>
+                <p>${userLocation.value}</p>
                 `)
 
             const myLocationMarker = new Mapboxgl.Marker()

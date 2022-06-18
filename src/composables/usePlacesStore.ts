@@ -15,6 +15,8 @@ export const usePlacesStore = () => {
         // State
         isLoading: computed(() => store.state.places.isLoading),
         userLocation: computed(() => store.state.places.userLocation),
+        places: computed(() => store.state.places.places),
+        isLoadingPlaces: computed(() => store.state.places.isLoadingPlaces),
 
         // Getters
         isUserlocationReady: computed<boolean>(
@@ -22,10 +24,7 @@ export const usePlacesStore = () => {
         ),
 
         // Actions
-        getInitialLocation: () => store.dispatch('places/getInitialLocation'),
-
-        // Mutations
-        setUserLocation: (location: any) =>
-            store.commit('places/setUserLocation', location),
+        searchPlacesByTerm: (query = '') =>
+            store.dispatch('places/searchPlacesByTerm', query),
     }
 }
