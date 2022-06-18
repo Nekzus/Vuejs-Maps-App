@@ -14,7 +14,11 @@ const actions: ActionTree<MapState, StateInterface> = {
         const resp = await directionsApi.get<DirectionsResponse>(
             `${start.join(',')};${end.join(',')}`,
         )
-        console.log(resp.data.routes[0].geometry.coordinates)
+        commit('setDistanceDuration', {
+            distance: resp.data.routes[0].distance,
+            duration: resp.data.routes[0].duration,
+        })
+        commit('setRoutePolyline', resp.data.routes[0].geometry.coordinates)
     },
 }
 

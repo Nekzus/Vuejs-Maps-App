@@ -6,7 +6,6 @@ import { Feature, PlacesResponse } from '@/interfaces/places'
 
 const actions: ActionTree<PlacesState, StateInterface> = {
     getInitialLocation({ commit }) {
-        // TODO: colocar loading
         navigator.geolocation.getCurrentPosition(
             ({ coords }) =>
                 commit('setLngLat', {
@@ -19,7 +18,6 @@ const actions: ActionTree<PlacesState, StateInterface> = {
             },
         )
     },
-    // TODO: colocar el valor de retorno
     async searchPlacesByTerm(
         { commit, state },
         query: string,

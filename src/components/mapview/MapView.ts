@@ -23,17 +23,14 @@ export default defineComponent({
             })
             const myLocationPopup = new Mapboxgl.Popup({
                 offset: [0, -45],
-            }).setLngLat(userLocation.value).setHTML(`
-                <h4>Aquí estoy</h4>
-                <p>${userLocation.value}</p>
-                `)
+            })
+                .setLngLat(userLocation.value)
+                .setHTML(`<h4>Aquí estoy</h4>`)
 
             const myLocationMarker = new Mapboxgl.Marker()
                 .setLngLat(userLocation.value)
                 .setPopup(myLocationPopup)
                 .addTo(map)
-
-            // TODO: establecer el mapa en Vuex
             setMap(map)
         }
 
