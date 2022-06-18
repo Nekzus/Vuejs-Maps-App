@@ -10,6 +10,8 @@ export const useMapsStore = () => {
         distance: computed(() => store.state.map.distance),
         duration: computed(() => store.state.map.duration),
 
+        isMapReady: computed<boolean>(() => store.getters['map/isMapReady']),
+
         setMap: (map: Mapboxgl.Map) => store.commit('map/setMap', map),
     }
 }
